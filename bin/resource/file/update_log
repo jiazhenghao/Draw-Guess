@@ -1,0 +1,12 @@
+Update:
+
+2013-12-08 14:20
+	util.beans.ImageBean.java
+		insert: subclass Background, variable TITLE_BG - [public static final Image TITLE_BG = FileUtil.getImage("background/title_bg.jpg");];
+	ui.part.component.MyTextField.java
+		repair: Constructor's bug - [textField = new JTextField(<update>text</update>)];
+		insert: Method - getToolTipText(), setToolTipText(String text);
+	ui.face.IPConnectPanel.java
+		repair: Constructor's bug - [portjtf.setToolTipText(<deprecated>"IP格式 ：127.0.0.1"</deprecated><update>"Port格式 ：小于65536的整数"</update>)];
+		repair: Method buttonPressed(EventObject e)'s bug - [else if (!<deprecated>ip</deprecated><update>port</update>.matches("\\d{1,5}") || Integer.parseInt(port) >= 2 << 16)];
+		insert: Method buttonPressed(EventObject e), the last of line "if (e.getSource() == connect) {}" block - [new ClientAction().start();]
